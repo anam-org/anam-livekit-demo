@@ -143,9 +143,8 @@ async def entrypoint(ctx: JobContext):
         if not avatar_id:
             raise ValueError("ANAM_AVATAR_ID or ANAM_PERSONA_ID not set")
 
-        # Create Gemini Live model
+        # Create Gemini Live realtime model (native audio)
         llm = google.realtime.RealtimeModel(
-            model="gemini-2.0-flash-exp",
             api_key=gemini_api_key,
             voice="Aoede",
             instructions=instructions,
@@ -176,7 +175,7 @@ async def entrypoint(ctx: JobContext):
             room_input_options=room_io.RoomInputOptions(video_enabled=True),
         )
 
-        logger.info("✅ Agent ready - Anam avatar + Gemini Live")
+        logger.info("✅ Agent ready - Anam avatar + Gemini Live native audio")
         await asyncio.sleep(1.5)
 
     except Exception as e:
